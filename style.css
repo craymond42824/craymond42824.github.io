@@ -6,4 +6,7 @@ h1 {
   color: #ccffff;
   font-family: "Lucida Console", "Courier New", monospace;
 }
+div {
+  background-color: #220088;
+}
 
