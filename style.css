@@ -1,6 +1,10 @@
 body {
   background-image: url("it4403background.png");
 }
+hr {
+  border: 5px groove #b3ecff;
+  border-radius: 2px;
+}
 h1, h2 {
   text-align: center;
   color: #b3ecff;
