@@ -1,7 +1,7 @@
 body {
   background-image: url("it4403background.png");
 }
-h1 {
+h1, h2 {
   text-align: center;
   color: #b3ecff;
   font-family: "Lucida Console", "Courier New", monospace;
@@ -9,9 +9,11 @@ h1 {
 p {
   text-align: center;
   color: #b3ecff;
-  font-family: "Lucida Console", "Courier New", monospace;
+  font-family: Arial, Helvetica, sans-serif;
 }
 div {
   background-color: #220088;
+  border-style: groove;
+  border-radius: 5px;
 }
 
