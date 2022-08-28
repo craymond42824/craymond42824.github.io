@@ -1,4 +1,9 @@
 body {
   background-image: url("it4403background.png");
-  text-align: center;
 }
+h1 {
+  text-align: center;
+  color: #ccffff;
+  font-family: "Lucida Console", "Courier New", monospace;
+}
+
