@@ -6,7 +6,7 @@ h1, h2 {
   color: #b3ecff;
   font-family: "Lucida Console", "Courier New", monospace;
 }
-p, ul {
+p, ul, li {
   text-align: center;
   color: #b3ecff;
   font-family: Arial, Helvetica, sans-serif;
@@ -16,10 +16,7 @@ div {
   border-color: #220088;
   border-style: groove;
   border-radius: 5px;
-  margin-top: 100px;
-  margin-bottom: 100px;
-  margin-right: 100px;
-  margin-left: 100px;
+  margin: auto;
   padding: 5px;
   width: 50%;
 }
