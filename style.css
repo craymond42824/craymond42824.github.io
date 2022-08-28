@@ -2,8 +2,9 @@ body {
   background-image: url("it4403background.png");
 }
 hr {
-  border: 5px groove #b3ecff;
+  border: 5px groove #220088;
   border-radius: 2px;
+  width: 75%
 }
 h1, h2 {
   text-align: center;
