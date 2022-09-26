@@ -854,7 +854,7 @@ $(document).ready(function(){
 	if (query == ""){
 		for (let i = 0; i < jsonObjectarray.length; i++) {
 			$("#result1").append("<p><img style=\"float:left; margin: 15px;\" src=\"" + jsonObjectarray[i].volumeInfo.imageLinks.thumbnail + "\"alt=\"The Modern Web\" /></p>");
-			$("#result1").append("<div><h3>Title: " + jsonObjectarray[i].volumeInfo.title + "<h3>");
+			$("#result1").append("<h3>Title: " + jsonObjectarray[i].volumeInfo.title + "<h3>");
 			$("#result1").append("<p><strong>Subtitle: </strong>" + jsonObjectarray[i].volumeInfo.subtitle + "</p>");
 			$("#result1").append("<p><strong>Author(s): </strong></p>");
 			for (let j = 0; j < jsonObjectarray[i].volumeInfo.authors.length; j++) {
@@ -866,14 +866,14 @@ $(document).ready(function(){
 			$("#result1").append("<p><strong>ISBN_10: </strong>" + jsonObjectarray[i].volumeInfo.industryIdentifiers[1].identifier + "</p>");
 			$("#result1").append("<p><strong>Description: </strong>" + jsonObjectarray[i].volumeInfo.description + "</p>");
 			$("#result1").append("<p><strong>Page Count: </strong>" + jsonObjectarray[i].volumeInfo.pageCount + "</p>");
-			$("#result1").append("<p><strong>Average Rating: </strong>" + jsonObjectarray[i].volumeInfo.averageRating + "/5</p></div>");
+			$("#result1").append("<p><strong>Average Rating: </strong>" + jsonObjectarray[i].volumeInfo.averageRating + "/5</p>");
 		}
 	}
 	else {
 		for (let i = 0; i < jsonObjectarray.length; i++) {
 			if (query == jsonObjectarray[i].volumeInfo.title || query == jsonObjectarray[i].volumeInfo.industryIdentifiers[0].identifier || query == jsonObjectarray[i].volumeInfo.industryIdentifiers[1].identifier){
 				$("#result1").append("<p><img style=\"float:left; margin: 15px;\" src=\"" + jsonObjectarray[i].volumeInfo.imageLinks.thumbnail + "\"alt=\"The Modern Web\" /></p>");
-				$("#result1").append("<div><h3>Title: " + jsonObjectarray[i].volumeInfo.title + "<h3>");
+				$("#result1").append("<h3>Title: " + jsonObjectarray[i].volumeInfo.title + "<h3>");
 				$("#result1").append("<p><strong>Subtitle: </strong>" + jsonObjectarray[i].volumeInfo.subtitle + "</p>");
 				$("#result1").append("<p><strong>Author(s): </strong></p>");
 				for (let j = 0; j < jsonObjectarray[i].volumeInfo.authors.length; j++) {
@@ -885,7 +885,7 @@ $(document).ready(function(){
 				$("#result1").append("<p><strong>ISBN_10: </strong>" + jsonObjectarray[i].volumeInfo.industryIdentifiers[1].identifier + "</p>");
 				$("#result1").append("<p><strong>Description: </strong>" + jsonObjectarray[i].volumeInfo.description + "</p>");
 				$("#result1").append("<p><strong>Page Count: </strong>" + jsonObjectarray[i].volumeInfo.pageCount + "</p>");
-				$("#result1").append("<p><strong>Average Rating: </strong>" + jsonObjectarray[i].volumeInfo.averageRating + "/5</p></div>");
+				$("#result1").append("<p><strong>Average Rating: </strong>" + jsonObjectarray[i].volumeInfo.averageRating + "/5</p>");
 			}
 		}
 	}
@@ -899,10 +899,10 @@ $(document).ready(function(){
 
 <h2>Milestone 1: Google Search</h2>
 <hr>
-<p> Note: To use this search function, please enter the title or ISBN (ISBN_10 or ISBN_13) value of the book you want to search for. Titles are case-sensitive. If you leave the search box blank and click 'Go!', all books will be listed.</p>
-<label>Search Book Title or ISBN:</label>
-<input id="query" type="text">
-<button id="search">Go!</button>
+<div><p> Note: To use this search function, please enter the title or ISBN (ISBN_10 or ISBN_13) value of the book you want to search for. Titles are case-sensitive. If you leave the search box blank and click 'Go!', all books will be listed.</p>
+	<label>Search Book Title or ISBN:</label>
+	<input id="query" type="text">
+	<button id="search">Go!</button></div>
 <div id="result1"></div>
 
 
