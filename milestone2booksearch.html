@@ -1,0 +1,99 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chloe Raymond's IT 4403 Labs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 id="title"></h1>
+<label>Search for a book title: </label>
+<input id="myInput" type="text" placeholder="Search...">
+<button id="search">Go!</button>
+<h2 id="searchresults"></h2>
+<div id="results" style="display: flex; flex-wrap: wrap;"></div>
+<div id="pagenumbers" style="float: right">
+	<label>Go to Page: </label>
+	<select id="pagenumber">
+		<option value="0">1</option>
+		<option value="20">2</option>
+		<option value="40">3</option>
+	</select>
+	<button id="search2">Go!</button>
+</div>
+
+<script>
+    $(document).ready(function(){
+		$("#pagenumbers").hide();
+		$("#search").click(function(){
+			$('#pagenumbers').css('display', 'flex');
+			var current_page = $('#pagenumber').val();
+			var term = $('#myInput').val().toLowerCase(); //or get the value from a textbox user input; you can Google how to do it.
+			var parameter="?q="+term+"&startIndex="+current_page+"&maxResults=20"; 
+			var service_point="https://www.googleapis.com/books/v1/volumes/"+parameter;
+			$.getJSON(service_point, function (json)
+			{
+				console.log(json);
+				var total=json.totalItems;
+				$("#total").text(total); 
+			
+				var resultHTML="";
+				for (i in json.items)
+				{
+					var booktitle=json.items[i].volumeInfo.title;
+					var bookid=json.items[i].id;
+					var cover="";
+					if (json.items[i].volumeInfo.imageLinks != null)
+						cover=json.items[i].volumeInfo.imageLinks.smallThumbnail;
+
+					resultHTML+="<div class='bookdiv'>";
+					resultHTML+="<img src='"+cover+"' style='float: left' />";
+					resultHTML+="<a href='bookinfo.html?id="+bookid+"'>"+booktitle+"</a>";
+					resultHTML+="</div>";;
+				}
+				$("#searchresults").html("Searched '"+term+"'; Total results: "+total+"<p>The top 60 results are displayed here.</p>");
+				$("#results").html(resultHTML); 
+				$(".bookdiv").css("width", "300px");
+			});	
+		});
+		$("#search2").click(function(){
+			$('#pagenumbers').css('display', 'flex');
+			var current_page = $('#pagenumber').val();
+			var term = $('#myInput').val().toLowerCase(); //or get the value from a textbox user input; you can Google how to do it.
+			var parameter="?q="+term+"&startIndex="+current_page+"&maxResults=20"; 
+			var service_point="https://www.googleapis.com/books/v1/volumes/"+parameter;
+			$.getJSON(service_point, function (json)
+			{
+				console.log(json);
+				var total=json.totalItems;
+				$("#total").text(total); 
+			
+				var resultHTML="";
+				for (i in json.items)
+				{
+					var booktitle=json.items[i].volumeInfo.title;
+					var bookid=json.items[i].id;
+					var cover="";
+					if (json.items[i].volumeInfo.imageLinks != null)
+						cover=json.items[i].volumeInfo.imageLinks.smallThumbnail;
+
+					resultHTML+="<div class='bookdiv'>";
+					resultHTML+="<img src='"+cover+"' style='float: left' />";
+					resultHTML+="<a href='bookinfo.html?id="+bookid+"'>"+booktitle+"</a>";
+					resultHTML+="</div>";;
+				}
+				$("#searchresults").html("Searched '"+term+"'; Total results: "+total+"<p>The top 60 results are displayed here.</p>");
+				$("#results").html(resultHTML); 
+				$(".bookdiv").css("width", "300px");
+			});	
+		});
+    });
+</script>
+
+
+</body>
+
+</html>
