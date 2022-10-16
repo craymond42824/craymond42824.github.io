@@ -1,0 +1,60 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chloe Raymond's IT 4403 Labs</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script>
+    $(function(){
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const id = urlParams.get('id');//or get the parameter value from the URL ?id=Wfan6L9RGgYC; you can Google how to do it.
+		var service_point="https://www.googleapis.com/books/v1/volumes/"+id;
+        $.getJSON(service_point, function (json)
+        {
+			var booksHTML="";
+			var description=json.volumeInfo.description;
+			var title=json.volumeInfo.title;
+			var url=json.volumeInfo.infoLink;
+			var cover=json.volumeInfo.imageLinks.small;
+			
+			$("#cover").attr("src",cover);
+			$("#title").text(title);
+			$("#webpage").text(url).attr("href",url);
+			
+			var resultHTML="";
+			for (i in json.volumeInfo.categories)
+            {
+				resultHTML+=json.volumeInfo.categories[i]+"; ";
+            }
+			$("#authors").html("<strong>Author(s): </strong>");
+			for (let i = 0; i < json.volumeInfo.authors.length; i++) {
+				$("#authors").append("<p>"+ json.volumeInfo.authors[i] + "</p>");
+			}
+			$("#publisher").html("<strong>Publisher: </strong>"+json.volumeInfo.publisher);
+			$("#description").html("<strong>Description: </strong>"+json.volumeInfo.description);
+            $("#category").html(resultHTML);
+		}); 
+    });
+</script>
+</head>
+
+<body>
+<h1 id="title"></h1>
+<p><a id="webpage"></a></p>
+<img id="cover" height="200">
+<p id="authors"></p>
+<br>
+<p id="publisher"></p>
+<br>
+<p id="description"></p>
+<br>
+<p><strong>Categories:</strong></p>
+<div id="category"> </div>
+
+
+</body>
+
+</html>
