@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chloe Raymond's IT 4403 Labs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1 id="title"></h1>
+<h2>Google Book Search</h2>
+<label>Search for a book title: </label>
+<input id="myInput" type="text" placeholder="Search...">
+<button id="searchbutton">Go!</button>
+<h2 id="searchresults"></h2>
+<div id="results" style="display: flex; flex-wrap: wrap;"></div>
+<div id="pagenumbers" style="float: right">
+	<label>Go to Page: </label>
+	<button class="pagebutton" value="1">1</button>
+	<button class="pagebutton" value="2">2</button>
+	<button class="pagebutton" value="3">3</button>
+	<button class="pagebutton" value="4">4</button>
+	<button class="pagebutton" value="5">5</button>
+</div>
+<div id="bookinfo"></div>
+<br>
+<br>
+<h2>My Bookshelf</h2>
+<div id="bookshelfresults" style="display: flex; flex-wrap: wrap;"></div>
+<div id="bookshelfinfo"></div>
+
+
+
+<script>
+    $(document).ready(function(){
+		$("#pagenumbers").hide();
+		$("#searchbutton").click(function(){
+			$('#pagenumbers').css('display', 'flex');
+			var term = $('#myInput').val().toLowerCase(); //or get the value from a textbox user input; you can Google how to do it.
+			var parameter="?q="+term+"&startIndex=0&maxResults=10"; 
+			var service_point="https://www.googleapis.com/books/v1/volumes/"+parameter;
+			$.getJSON(service_point, function (json)
+			{
+				console.log(json);
+				var total=json.totalItems;
+				$("#total").text(total); 
+			
+				var resultHTML="";
+				for (i in json.items)
+				{
+					var booktitle=json.items[i].volumeInfo.title;
+					var bookid=json.items[i].id;
+					var cover="";
+					if (json.items[i].volumeInfo.imageLinks != null)
+						cover=json.items[i].volumeInfo.imageLinks.smallThumbnail;
+
+					resultHTML += "<div class='bookdiv'>";
+					resultHTML += "<img src='" + cover + "' style='float: left' />";
+					resultHTML += "<a href='' data-value='"+ bookid + "'>"+ booktitle + "</a>";
+					resultHTML += "</div>";
+				}
+				$("#searchresults").html("Searched '"+term+"'; Total results: "+total+"<p>The first page of the top 50 results are displayed here (1-10).</p>");
+				$("#results").html(resultHTML); 
+				$(".bookdiv").css("width", "300px");
+				$("[href]").click(function(){
+					var id = $(this).data('value'); 
+					console.log(id);
+					var service_point="https://www.googleapis.com/books/v1/volumes/"+id;
+					$.getJSON(service_point, function (json)
+					{
+						var resultHTML="";
+						var url=json.volumeInfo.infoLink;
+					
+						$("#bookinfo").html("<br><h3>Book Info</h3>");
+						$("#bookinfo").append("<p><strong>Title: </strong></p>"+json.volumeInfo.title);
+						$("#bookinfo").append("<p><strong>Link: </strong></p><a href='"+url+"'>"+url+"</a>");
+						$("#bookinfo").append("<p><strong>Author(s): </strong></p>");
+						for (let i = 0; i < json.volumeInfo.authors.length; i++) {
+							$("#bookinfo").append("<p>"+ json.volumeInfo.authors[i] + "</p>");
+						}
+						$("#bookinfo").append("<p><strong>Publisher: </strong></p>"+json.volumeInfo.publisher);
+						$("#bookinfo").append("<p><strong>Description: </strong></p>"+json.volumeInfo.description);
+						for (i in json.volumeInfo.categories)
+						{
+							resultHTML+=json.volumeInfo.categories[i]+"; ";
+						}
+						$("#bookinfo").append("<p><strong>Categories: </strong></p>");
+						$("#bookinfo").append(resultHTML);
+					}); 
+					return false;
+				});
+			});	
+		});
+		$(".pagebutton").click(function(){
+			$('#pagenumbers').css('display', 'flex');
+			var current_page = $(this).val();
+			var term = $('#myInput').val().toLowerCase();
+			var parameter = '';
+			if (current_page == "1"){
+				parameter = "?q="+term+"&startIndex=0&maxResults=10"; 
+			}
+			else if (current_page == "2"){
+				parameter = "?q="+term+"&startIndex=10&maxResults=10"; 
+			}
+			else if (current_page == "3"){
+				parameter = "?q="+term+"&startIndex=20&maxResults=10"; 
+			}
+			else if (current_page == "4"){
+				parameter = "?q="+term+"&startIndex=30&maxResults=10"; 
+			}
+			else if (current_page == "5"){
+				parameter = "?q="+term+"&startIndex=40&maxResults=10"; 
+			}
+			var service_point="https://www.googleapis.com/books/v1/volumes/"+parameter;
+			$.getJSON(service_point, function (json)
+			{
+				console.log(json);
+				var total=json.totalItems;
+				$("#total").text(total); 
+			
+				var resultHTML="";
+				for (i in json.items)
+				{
+					var booktitle=json.items[i].volumeInfo.title;
+					var bookid=json.items[i].id;
+					var cover="";
+					if (json.items[i].volumeInfo.imageLinks != null)
+						cover=json.items[i].volumeInfo.imageLinks.smallThumbnail;
+
+					resultHTML += "<div class='bookdiv'>";
+					resultHTML += "<img src='" + cover + "' style='float: left' />";
+					resultHTML += "<a href='' data-value='"+ bookid + "'>"+ booktitle + "</a>";
+					resultHTML += "</div>";
+				}
+				if (current_page == "1"){
+					$("#searchresults").html("Searched '"+term+"'; Total results: "+total+"<p>The first page of the top 50 results is displayed here (1-10).</p>");
+				}
+				else if (current_page == "2"){
+					$("#searchresults").html("Searched '"+term+"'; Total results: "+total+"<p>The second page of the top 50 results is displayed here (11-20).</p>");
+				}
+				else if (current_page == "3"){
+					$("#searchresults").html("Searched '"+term+"'; Total results: "+total+"<p>The third page of the top 50 results is displayed here (21-30).</p>");
+				}
+				else if (current_page == "4"){
+					$("#searchresults").html("Searched '"+term+"'; Total results: "+total+"<p>The fourth page of the top 50 results is displayed here (31-40).</p>"); 
+				}
+				else if (current_page == "5"){
+					$("#searchresults").html("Searched '"+term+"'; Total results: "+total+"<p>The fifth page of the top 50 results is displayed here (41-50).</p>"); 
+				}
+				$("#results").html(resultHTML); 
+				$(".bookdiv").css("width", "300px");
+				$("[href]").click(function(){
+					var id = $(this).data('value'); 
+					console.log(id);
+					var service_point="https://www.googleapis.com/books/v1/volumes/"+id;
+					$.getJSON(service_point, function (json)
+					{
+						var resultHTML="";
+						var url=json.volumeInfo.infoLink;
+					
+						$("#bookinfo").html("<br><h3>Book Info</h3>");
+						$("#bookinfo").append("<p><strong>Title: </strong></p>"+json.volumeInfo.title);
+						$("#bookinfo").append("<p><strong>Link: </strong></p><a href='"+url+"'>"+url+"</a>");
+						$("#bookinfo").append("<p><strong>Author(s): </strong></p>");
+						for (let i = 0; i < json.volumeInfo.authors.length; i++) {
+							$("#bookinfo").append("<p>"+ json.volumeInfo.authors[i] + "</p>");
+						}
+						$("#bookinfo").append("<p><strong>Publisher: </strong></p>"+json.volumeInfo.publisher);
+						$("#bookinfo").append("<p><strong>Description: </strong></p>"+json.volumeInfo.description);
+						for (i in json.volumeInfo.categories)
+						{
+							resultHTML+=json.volumeInfo.categories[i]+"; ";
+						}
+						$("#bookinfo").append("<p><strong>Categories: </strong></p>");
+						$("#bookinfo").append(resultHTML);
+					}); 
+					return false;
+				});
+			});	
+		});
+		
+		var service_point1 = "https://www.googleapis.com/books/v1/users/106114825798362862008/bookshelves/1001/";
+        var service_point2 = "https://www.googleapis.com/books/v1/users/106114825798362862008/bookshelves/1001/volumes";
+
+        $.getJSON(service_point2, function (json2) {
+
+
+            resultHTML = "";
+            for (i in json2.items) {
+                var booktitle = json2.items[i].volumeInfo.title;
+                var bookid = json2.items[i].id;
+                var cover = json2.items[i].volumeInfo.imageLinks.smallThumbnail;
+
+                resultHTML += "<div class='bookdiv'>";
+                resultHTML += "<img src='" + cover + "' style='float: left' />";
+                resultHTML += "<a href='' data-value='"+ bookid + "'>"+ booktitle + "</a>";
+                resultHTML += "</div>";
+            }
+            $("#bookshelfresults").html(resultHTML);
+            $(".bookdiv").css("width", "300px");
+			$("[href]").click(function(){
+			
+				var id = $(this).data('value'); 
+				console.log(id);
+				var service_point="https://www.googleapis.com/books/v1/volumes/"+id;
+				$.getJSON(service_point, function (json)
+				{
+					var resultHTML="";
+					var url=json.volumeInfo.infoLink;
+					
+					$("#bookshelfinfo").html("<br><h3>Book Info</h3>");
+					$("#bookshelfinfo").append("<p><strong>Title: </strong></p>"+json.volumeInfo.title);
+					$("#bookshelfinfo").append("<p><strong>Link: </strong></p><a href='"+url+"'>"+url+"</a>");
+					$("#bookshelfinfo").append("<p><strong>Author(s): </strong></p>");
+					for (let i = 0; i < json.volumeInfo.authors.length; i++) {
+						$("#bookshelfinfo").append("<p>"+ json.volumeInfo.authors[i] + "</p>");
+					}
+					$("#bookshelfinfo").append("<p><strong>Publisher: </strong></p>"+json.volumeInfo.publisher);
+					$("#bookshelfinfo").append("<p><strong>Description: </strong></p>"+json.volumeInfo.description);
+					for (i in json.volumeInfo.categories)
+					{
+						resultHTML+=json.volumeInfo.categories[i]+"; ";
+					}
+					$("#bookshelfinfo").append("<p><strong>Categories: </strong></p>");
+					$("#bookshelfinfo").append(resultHTML);
+				}); 
+				return false;
+			});
+        });
+    });
+</script>
+
+
+</body>
+
+</html>
