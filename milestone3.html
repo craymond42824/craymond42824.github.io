@@ -224,8 +224,8 @@
 					{
 						resultHTML+=json.volumeInfo.categories[i]+"; ";
 					}
-					$("#bookshelfinfo").append("<p><strong>Categories: </strong></p><p>");
-					$("#bookshelfinfo").append(resultHTML+"</p>");
+					$("#bookshelfinfo").append("<p><strong>Categories: </strong></p>");
+					$("#bookshelfinfo").append("<p>"+resultHTML+"</p>");
 				}); 
 				return false;
 			});
