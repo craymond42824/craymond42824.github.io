@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chloe Raymond's IT 4403 Labs</title>
-    <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -212,19 +212,19 @@
 					var url=json.volumeInfo.infoLink;
 					
 					$("#bookshelfinfo").html("<br><h3>Book Info</h3>");
-					$("#bookshelfinfo").append("<p><strong>Title: </strong></p>"+json.volumeInfo.title);
+					$("#bookshelfinfo").append("<p><strong>Title: </strong>"+json.volumeInfo.title+"</p>");
 					$("#bookshelfinfo").append("<p><strong>Link: </strong></p><a href='"+url+"'>"+url+"</a>");
 					$("#bookshelfinfo").append("<p><strong>Author(s): </strong></p>");
 					for (let i = 0; i < json.volumeInfo.authors.length; i++) {
 						$("#bookshelfinfo").append("<p>"+ json.volumeInfo.authors[i] + "</p>");
 					}
-					$("#bookshelfinfo").append("<p><strong>Publisher: </strong></p>"+json.volumeInfo.publisher);
-					$("#bookshelfinfo").append("<p><strong>Description: </strong></p>"+json.volumeInfo.description);
+					$("#bookshelfinfo").append("<p><strong>Publisher: </strong>"+json.volumeInfo.publisher+"</p>");
+					$("#bookshelfinfo").append("<p><strong>Description: </strong>"+json.volumeInfo.description+"</p>");
 					for (i in json.volumeInfo.categories)
 					{
-						resultHTML+=json.volumeInfo.categories[i]+"; ";
+						resultHTML+=json.volumeInfo.categories[i]+"; </p>";
 					}
-					$("#bookshelfinfo").append("<p><strong>Categories: </strong></p>");
+					$("#bookshelfinfo").append("<p><strong>Categories: </strong></p><p>");
 					$("#bookshelfinfo").append(resultHTML);
 				}); 
 				return false;
