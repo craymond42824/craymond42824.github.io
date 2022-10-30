@@ -10,10 +10,15 @@ h1, h2, h3 {
   text-align: center;
   color: #b3ecff;
   font-family: "Lucida Console", "Courier New", monospace;
+   padding: 5px;
+}
+h2 {
+	margin-top: 100px;
 }
 p, ul, li{
   color: #b3ecff;
   font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
 }
 label {
   color: #b3ecff;
@@ -25,8 +30,8 @@ div {
   border-style: groove;
   border-radius: 5px;
   margin: auto;
-  margin-top: 100px;
-  margin-bottom: 100px;
+  margin-top: 50px;
+  margin-bottom: 20px;
   padding: 5px;
   width: 80%;
 }
@@ -42,6 +47,24 @@ a:hover {
   border-style: groove;
   border-radius: 5px;
   margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+#pagenumbers {
+  background-color: #220088;
+  border-color: #220088;
+  border-style: groove;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+#bookinfo {
+  background-color: #220088;
+  border-color: #220088;
+  border-style: groove;
+  border-radius: 5px;
+  margin-top: 70px;
   margin-bottom: 20px;
   padding: 5px;
 }
