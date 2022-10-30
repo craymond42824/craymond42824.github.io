@@ -36,3 +36,14 @@ a {
 a:hover {
   color: #ff99ff;
 }
+.bookdiv {
+  background-color: #220088;
+  border-color: #220088;
+  border-style: groove;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 5px;
+  width: 50%;
+}
