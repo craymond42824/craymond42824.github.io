@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chloe Raymond's IT 4403 Labs</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style3.css">
 </head>
 <body>
 
@@ -222,10 +222,10 @@
 					$("#bookshelfinfo").append("<p><strong>Description: </strong>"+json.volumeInfo.description+"</p>");
 					for (i in json.volumeInfo.categories)
 					{
-						resultHTML+=json.volumeInfo.categories[i]+"; </p>";
+						resultHTML+=json.volumeInfo.categories[i]+"; ";
 					}
 					$("#bookshelfinfo").append("<p><strong>Categories: </strong></p><p>");
-					$("#bookshelfinfo").append(resultHTML);
+					$("#bookshelfinfo").append(resultHTML+"</p>);
 				}); 
 				return false;
 			});
