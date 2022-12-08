@@ -1,0 +1,94 @@
+body {
+  background-color: #87CEFA;
+}
+hr {
+  border: 5px groove #220088;
+  border-radius: 2px;
+  width: 75%
+}
+h1, h3 {
+  text-align: center;
+  color: #b3ecff;
+  font-family: "Lucida Console", "Courier New", monospace;
+   padding: 5px;
+}
+h2 {
+	text-align: center;
+    color: #220088;
+    font-family: "Lucida Console", "Courier New", monospace;
+    padding: 5px;
+	margin-top: 100px;
+}
+p, ul, li{
+  color: #b3ecff;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+}
+label {
+  color: #b3ecff;
+  font-family: Arial, Helvetica, sans-serif;
+}
+div {
+  color: #b3ecff;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #220088;
+  border-color: #220088;
+  border-style: groove;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 80%;
+}
+a {
+  text-align: center;
+  color: #b3ecff;
+}
+a:hover {
+  color: #ff99ff;
+}
+.moviediv {
+  background-color: #220088;
+  border-color: #220088;
+  border-style: groove;
+  border-radius: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+#pagenumbers {
+  background-color: #220088;
+  border-color: #220088;
+  border-style: groove;
+  border-radius: 5px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+#movieinfo {
+  background-color: #220088;
+  border-color: #220088;
+  border-style: groove;
+  border-radius: 5px;
+  margin-top: 100px;
+  margin-bottom: 20px;
+  padding: 5px;
+}
+img {
+  padding: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+button {
+	 text-align: center;
+	 font-size: 16px;
+	 background-color: #F0F8FF;
+	 border: none;
+     color: #220088;
+	 border-radius: 8px;
+}
+button:hover {
+	 background-color: #ff99ff;
+}
